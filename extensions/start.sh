@@ -1,10 +1,10 @@
 #!/bin/sh
-# 找到 Railway 分配的数据存储路径
-STATE_DIR=${OPENCLAW_STATE_DIR:-/data/.openclaw}
-mkdir -p "$STATE_DIR"
+# 强制指定普通用户有权限读写的专属目录
+export OPENCLAW_STATE_DIR="/home/node/.openclaw"
+mkdir -p "$OPENCLAW_STATE_DIR"
 
 # 自动生成配置文件：解锁 Host 限制 + 注入满血版 AnyRouter 模型
-cat << EOF > "$STATE_DIR/openclaw.json"
+cat << EOF > "$OPENCLAW_STATE_DIR/openclaw.json"
 {
   "gateway": {
     "controlUi": {
